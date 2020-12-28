@@ -10,3 +10,8 @@
 
 ##### Profile Page
 <img width="625" alt="Screen Shot 2020-12-28 at 12 31 09 AM" src="https://user-images.githubusercontent.com/60105611/103192247-04f70280-48a6-11eb-878a-5e4e673b1b31.png">
+
+##### Product Page
+<img width="625" alt="Screen Shot 2020-12-28 at 12 31 09 AM" src="https://user-images.githubusercontent.com/60105611/103192367-6ae38a00-48a6-11eb-80d6-5327eb82cf22.png">
+
+
