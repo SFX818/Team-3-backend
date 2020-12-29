@@ -7,6 +7,7 @@ module.exports = app => {
     //router.post('/', products.create)
     //gets all the products in database
     app.get('/api/products', products.findAll)
+    app.post('/api/products', products.create)
 
 
    // app.use('/api/products', router)
