@@ -1,16 +1,16 @@
 module.exports = app => {
     const products = require('../controllers/product.controller.js')
-    let router = require('express').Router();
+    //let router = require('express').Router(); //*****Don't need a router here, we are getting passed app from server.js
 
 
     //create a new product
-    router.post('/', products.create)
+    //router.post('/', products.create)
     //gets all the products in database
-    router.get('/', products.findAll)
+    app.get('/api/products', products.findAll)
 
 
-    app.use('/api/products', router)
-    console.log('route reached 🏄🏾‍♂️')
+   // app.use('/api/products', router)
+    
 }
 
 // app.get

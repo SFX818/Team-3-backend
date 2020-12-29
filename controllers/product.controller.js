@@ -32,6 +32,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
+    
     Product.find()
     .then((data) => {
         res.send(data)
