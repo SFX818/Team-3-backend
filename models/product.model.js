@@ -7,6 +7,7 @@ module.exports = mongoose => {
                 name: String,
                 price: String,
                 description: String,
+                userSelling: String
                 //image: cloundinary
             },
             //auto generates timestamp
