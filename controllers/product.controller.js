@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         price: req.body.price,
         //image: not sure how we're going to this yet
         description: req.body.description,
-        userSelling: req.body.currentUser
+        userSelling: req.body.username
     })
     //save product in the database
     product
