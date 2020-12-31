@@ -76,3 +76,13 @@ exports.delete = (req, res) => {
     })
 }
 
+exports.update = (req,res) => {
+    const id = req.params.id;
+    Product.findByIdAndUpdate({_id :id}, req.body).then((data)=>{
+        if(!data){
+            res.status(400).send({message: "Not found Product with id" + id});
+        }else{
+            res.send(data)
+        }
+    })
+}
