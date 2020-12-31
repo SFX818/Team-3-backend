@@ -62,3 +62,17 @@ exports.findOne = (req, res) => {
 
 
 }
+
+exports.delete = (req, res) => {
+    const id = req.params.id;
+    Product.findByIdAndDelete (id)
+    .then((data)=>{
+        if(!data){
+            res.status(505)
+            .send({message:"it was deleted" + id})
+        } else {
+            res.send(data)
+        }
+    })
+}
+

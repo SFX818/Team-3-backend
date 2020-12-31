@@ -8,18 +8,8 @@ module.exports = app => {
     //gets all the products in database
     app.get('/api/products', products.findAll)
     app.post('/api/products', products.create)
-
-
+    app.delete('/api/products/:id', products.delete)
    // app.use('/api/products', router)
-    
 }
-
-// app.get
-
-
-
-// app.put
-
-
 
 // app.delete//method override
