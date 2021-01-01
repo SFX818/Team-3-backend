@@ -54,7 +54,6 @@ isAdmin = (req, res, next) => {
             // if no admin role round, send status 403 message
             res.status(403).send({message: "Requires admin Role"})
         })
-
     })
 
 }
