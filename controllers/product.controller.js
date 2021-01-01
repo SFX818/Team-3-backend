@@ -63,7 +63,6 @@ exports.findOne = (req, res) => {
 
 exports.delete = (req, res) => {
     const id = req.params.id;
-    console.log(id)
     Product.findByIdAndDelete (id)
     .then((data)=>{
         if(!data){
