@@ -125,3 +125,79 @@ exports.signin = (req, res) => {
 
     })
 }
+
+exports.delete = (req,res) => {
+    User.findOneAndDelete({
+        username: req.body.username
+    })
+    .exec((err) => {
+        if (err) {
+            return res.status(404).send({message: "User not found"})
+        }else{
+            return res.status(202).send({message:"Deleted account :/"})
+        }
+    })
+}
+
+exports.editEmail = (req,res) => {
+    User.updateOne({ username: req.body.username }, { email: req.body.email })
+    .exec((err) => {
+        if (err) {
+            return res.status(404).send({message: "User not found"})
+        }else{
+            return res.status(202).send({message:"Email for this account is: " + req.body.email})
+        }
+    })
+}
+
+exports.editUsername = (req, res) => {
+    User.updateOne({ username: req.body.username }, { username: req.body.newUsername })
+    .exec((err) => {
+        if (err) {
+            return res.status(404).send({message: "User not found"})
+        }else{
+            return res.status(202).send({message:"username for this account is now: " + req.body.newUsername})
+        }
+    })
+}
+
+exports.editPassword = (req, res) => {
+    User.findOne({
+        username: req.body.username
+    })
+    .exec((err, user) => {
+        if(err) {
+            res.status(500).send({message: err})
+            return
+        }
+
+        // user did not exist
+        if(!user) {
+            return res.status(404).send({message: "User not found"})
+        }
+
+        // validate the password by passing req.body password and the password returned from db
+        // over to bcrypt to unhash and compare
+        const passwordIsValid = bcrypt.compareSync(
+            req.body.password, // unencrypted pw from req.body
+            user.password // encrypted pwd saved in db
+        )
+
+        if (!passwordIsValid) {
+            return res.status(401).send({ accessToken: null, message: "invalid password"})
+        }else{
+            if (req.body.newPassword === req.body.newPasswordAgain){
+                User.updateOne({username:req.body.username},{password: bcrypt.hashSync(req.body.newPassword, 8)})
+               .exec((err) => {
+                   if (err){
+                       return res.status(404).send({message: "User not found"})
+                   }else{
+                       return res.status(200).send({message:"New password is: "+ req.body.newPassword})
+                   }
+               })
+            }else{
+                return res.status(401).send({ accessToken: null, message: "password don't match"})
+            }
+        }
+    })
+}

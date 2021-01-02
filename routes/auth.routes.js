@@ -17,5 +17,17 @@ module.exports = function(app) {
     )
     // handle sign
     app.post("/api/auth/signin", controller.signin)
+
+    // delete user
+    app.delete("/api/auth/delete", controller.delete)
+
+    // change user email
+    app.put("/api/auth/editEmail", controller.editEmail)
+
+    // edit username
+    app.put("/api/auth/editUsername", controller.editUsername)
+
+    // edit password
+    app.put("/api/auth/editPassword", controller.editPassword)
 }
 
