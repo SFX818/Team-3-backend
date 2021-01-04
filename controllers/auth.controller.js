@@ -127,10 +127,11 @@ exports.signin = (req, res) => {
 }
 
 exports.delete = (req,res) => {
+    console.log("hit delete account")
     User.findOneAndDelete({
-        username: req.body.username
+        username: req.params.username
     })
-    .exec((err) => {
+    .exec((err, response) => {
         if (err) {
             return res.status(404).send({message: "User not found"})
         }else{
@@ -151,6 +152,8 @@ exports.editEmail = (req,res) => {
 }
 
 exports.editUsername = (req, res) => {
+    console.log("hit edit username")
+    console.log(req)
     User.updateOne({ username: req.body.username }, { username: req.body.newUsername })
     .exec((err) => {
         if (err) {
