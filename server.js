@@ -3,8 +3,13 @@ const bodyParser = require('body-parser')
 const dbConfig = require('./config/db.config')
 const cors = require("cors"); /*  Require here   */
 const mongoose = require("mongoose");
+const cloudinary = require('cloudinary')
 
 const app = express()  
+
+require('dotenv').config()
+
+cloudinary.config(process.env.CLOUDINARY_URL)
 
 app.use(cors()); /*  Use here   */
 

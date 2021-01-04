@@ -1,6 +1,7 @@
 const db = require('../models')
 
 const Product = db.products
+const cloudinary = require('cloudinary')
 
 exports.create = (req, res) => {
     //validate request
@@ -8,11 +9,18 @@ exports.create = (req, res) => {
         res.status(400).send({message: 'Name can not be empty!'})
         return;
     }
+    //cloudinary post here
+    let imgURL = ""
+    console.log(req.body.image)
+    cloudinary.uploader.upload(req.file.path, function(result){
+        imgURL = result.url
+    })
+   
     //create a product
     const product = new Product({
         name: req.body.name,
         price: req.body.price,
-        //image: not sure how we're going to this yet
+        image: imgURL,
         description: req.body.description,
         userSelling: req.body.username
     })
