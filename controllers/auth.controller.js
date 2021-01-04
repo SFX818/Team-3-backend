@@ -165,10 +165,13 @@ exports.editUsername = (req, res) => {
 }
 
 exports.editPassword = (req, res) => {
+    console.log("hit edit password")
     User.findOne({
         username: req.body.username
     })
     .exec((err, user) => {
+        console.log(err)
+        console.log(user)
         if(err) {
             res.status(500).send({message: err})
             return
@@ -185,13 +188,15 @@ exports.editPassword = (req, res) => {
             req.body.password, // unencrypted pw from req.body
             user.password // encrypted pwd saved in db
         )
-
+        console.log(passwordIsValid)
         if (!passwordIsValid) {
             return res.status(401).send({ accessToken: null, message: "invalid password"})
         }else{
+            console.log(req.body.newPassword === req.body.newPasswordAgain)
             if (req.body.newPassword === req.body.newPasswordAgain){
                 User.updateOne({username:req.body.username},{password: bcrypt.hashSync(req.body.newPassword, 8)})
                .exec((err) => {
+                   console.log(err)
                    if (err){
                        return res.status(404).send({message: "User not found"})
                    }else{
@@ -199,7 +204,7 @@ exports.editPassword = (req, res) => {
                    }
                })
             }else{
-                return res.status(401).send({ accessToken: null, message: "password don't match"})
+                return res.status(401).send({ accessToken: null, message: "Passwords don't match"})
             }
         }
     })
