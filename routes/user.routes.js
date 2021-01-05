@@ -17,6 +17,7 @@ module.exports = function(app) {
     app.get("/api/test/user", [authJwt.verifyWebToken], controller.userBoard)
 
     app.get("/api/test/admin", [authJwt.verifyWebToken, authJwt.isAdmin],
-    controller.adminBoard
-    )
+    controller.adminBoard)
+
+    // need a route here to get user data for profile
 }
