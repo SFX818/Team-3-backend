@@ -142,6 +142,7 @@ exports.getProfile = (req, res) => {
 }
 
 
+
 exports.delete = (req,res) => {
     console.log("hit delete account")
     User.findOneAndDelete({
@@ -163,6 +164,21 @@ exports.editEmail = (req,res) => {
             return res.status(404).send({message: "User not found"})
         }else{
             return res.status(202).send({message:"Email for this account is: " + req.body.email})
+        }
+    })
+}
+
+exports.editAbout = (req,res) => {
+    console.log("hit about")
+    console.log(req.body.username)
+    console.log(req.body.about)
+    User.updateOne({ username: req.body.username }, { about: req.body.about })
+    .exec((err) => {
+        if (err) {
+            return res.status(404).send({message: "User not found"})
+        }else{
+            console.log("About for "+ req.body.username +  " is: " + req.body.about)
+            return res.status(202).send({message:"About for"+ req.body.username +  "is:" + req.body.about})
         }
     })
 }

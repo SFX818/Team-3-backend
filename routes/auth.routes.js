@@ -32,5 +32,8 @@ module.exports = function(app) {
 
     // get profile
     app.get("/api/auth/profile/:id",  controller.getProfile)
+
+    // edit about
+    app.put("/api/auth/aboutMe/:id", controller.editAbout)
 }
 
