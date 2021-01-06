@@ -126,6 +126,18 @@ exports.signin = (req, res) => {
     })
 }
 
+exports.getProfile = (req, res) => {
+    User.findOne({username: req.body.username})
+    .exec(err => {
+        if (err) {
+            return res.status(404).send({message: "User not found"})
+        }else{ 
+            return res.status(202).send({message:"Found account"})
+        }
+    })
+}
+
+
 exports.delete = (req,res) => {
     console.log("hit delete account")
     User.findOneAndDelete({

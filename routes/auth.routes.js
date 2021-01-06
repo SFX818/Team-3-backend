@@ -29,5 +29,8 @@ module.exports = function(app) {
 
     // edit password
     app.put("/api/auth/editPassword/:id", controller.editPassword)
+
+    // get profile
+    app.put("/api/auth/profile/:id",  controller.getProfile)
 }
 
