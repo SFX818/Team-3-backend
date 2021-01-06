@@ -120,6 +120,7 @@ exports.signin = (req, res) => {
             username: user.username,
             email: user.email,
             roles: authorities,
+            about: user.about,
             accessToken: token
         })
 
@@ -127,8 +128,8 @@ exports.signin = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    console.log("hit get profile")
-    console.log(req.params.id)
+    // console.log("hit get profile")
+    // console.log(req.params.id)
     // console.log(req.body.username)
     User.findOne({username: req.params.id})
     .exec((err, user) => {
@@ -144,7 +145,7 @@ exports.getProfile = (req, res) => {
 
 
 exports.delete = (req,res) => {
-    console.log("hit delete account")
+    // console.log("hit delete account")
     User.findOneAndDelete({
         username: req.params.username
     })
@@ -169,9 +170,9 @@ exports.editEmail = (req,res) => {
 }
 
 exports.editAbout = (req,res) => {
-    console.log("hit about")
-    console.log(req.body.username)
-    console.log(req.body.about)
+    // console.log("hit about")
+    // console.log(req.body.username)
+    // console.log(req.body.about)
     User.updateOne({ username: req.body.username }, { about: req.body.about })
     .exec((err) => {
         if (err) {
@@ -184,8 +185,8 @@ exports.editAbout = (req,res) => {
 }
 
 exports.editUsername = (req, res) => {
-    console.log("hit edit username")
-    console.log(req)
+    // console.log("hit edit username")
+    // console.log(req)
     User.updateOne({ username: req.body.username }, { username: req.body.newUsername })
     .exec((err) => {
         if (err) {
@@ -197,7 +198,7 @@ exports.editUsername = (req, res) => {
 }
 
 exports.editPassword = (req, res) => {
-    console.log("hit edit password")
+    // console.log("hit edit password")
     User.findOne({
         username: req.body.username
     })
