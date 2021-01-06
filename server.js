@@ -3,8 +3,14 @@ const bodyParser = require('body-parser')
 const dbConfig = require('./config/db.config')
 const cors = require("cors"); /*  Require here   */
 const mongoose = require("mongoose");
+const cloudinary = require('cloudinary')
+
+
 
 const app = express()  
+
+require('dotenv').config()
+
 
 app.use(cors()); /*  Use here   */
 
@@ -13,6 +19,9 @@ app.use(bodyParser.json())
 
 // parse request of content type = application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))
+
+
+
 
 // SETUP MONGOOSE
 const db = require('./models/')
