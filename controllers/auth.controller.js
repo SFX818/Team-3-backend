@@ -127,12 +127,16 @@ exports.signin = (req, res) => {
 }
 
 exports.getProfile = (req, res) => {
-    User.findOne({username: req.body.username})
-    .exec(err => {
+    console.log("hit get profile")
+    console.log(req.params.id)
+    // console.log(req.body.username)
+    User.findOne({username: req.params.id})
+    .exec((err, user) => {
         if (err) {
             return res.status(404).send({message: "User not found"})
         }else{ 
-            return res.status(202).send({message:"Found account"})
+            console.log(user)
+            return res.status(202).send({data:user})
         }
     })
 }
@@ -143,7 +147,7 @@ exports.delete = (req,res) => {
     User.findOneAndDelete({
         username: req.params.username
     })
-    .exec((err, response) => {
+    .exec((err) => {
         if (err) {
             return res.status(404).send({message: "User not found"})
         }else{
