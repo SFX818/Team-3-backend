@@ -5,11 +5,12 @@ const cors = require("cors"); /*  Require here   */
 const mongoose = require("mongoose");
 const cloudinary = require('cloudinary')
 
+
+
 const app = express()  
 
 require('dotenv').config()
 
-cloudinary.config(process.env.CLOUDINARY_URL)
 
 app.use(cors()); /*  Use here   */
 
@@ -18,6 +19,9 @@ app.use(bodyParser.json())
 
 // parse request of content type = application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: true}))
+
+
+
 
 // SETUP MONGOOSE
 const db = require('./models/')
