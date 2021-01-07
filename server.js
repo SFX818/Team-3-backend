@@ -27,8 +27,10 @@ app.use(bodyParser.urlencoded({extended: true}))
 const db = require('./models/')
 const Role = db.role
 
+const dbURI = process.env.MONGODB_URI ||`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`
+
 // connect to mongo database
-db.mongoose.connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+db.mongoose.connect(dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
