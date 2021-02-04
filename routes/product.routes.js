@@ -1,4 +1,13 @@
 module.exports = app => {
+    app.use( (req,res, next) => {
+        // set header and allow use of x access token ( we will use this to pass our token )
+        res.header(
+            "Access-Control-Allow-Headers",
+            "x-access-token, Origin, Content-type, Accept, x-requested-with"
+        );
+        next();
+    })
+
     const products = require('../controllers/product.controller.js')
     //let router = require('express').Router(); //*****Don't need a router here, we are getting passed app from server.js
     let multer = require('multer')
